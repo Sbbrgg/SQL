@@ -2,7 +2,7 @@
 USE PV_521_Import;
 GO
 
-CREATE PROCEDURE sp_InsertScheduleStacionar
+ALTER PROCEDURE sp_InsertScheduleStacionar
 	@group_name			AS	NCHAR(10),
 	@discipline_name	AS	NVARCHAR(150),
 	@teacher_first_name	AS	NVARCHAR(50),
@@ -34,14 +34,16 @@ WHILE	@lesson_number < @number_of_lessons
 BEGIN
 		SET	@time	=	@start_time
 		PRINT(FORMATMESSAGE(N'%i  %s  %s  %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY, @date), CAST(@start_time AS VARCHAR(24))));
-		IF NOT EXISTS	(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
-			INSERT Schedule VALUES	(@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
+		EXEC spInsertLesson @group, @discipline, @teacher, @date, @time;
+		--IF NOT EXISTS	(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+			--INSERT Schedule VALUES	(@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
 		SET	@lesson_number = @lesson_number + 1;
 		SET	@time	=	DATEADD(MINUTE, 95, @start_time);
 
 		PRINT(FORMATMESSAGE(N'%i  %s  %s  %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY, @date), CAST(@start_time AS VARCHAR(24))));
-		IF NOT EXISTS	(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
-			INSERT Schedule VALUES	(@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
+		EXEC spInsertLesson @group, @discipline, @teacher, @date, @time;
+		--IF NOT EXISTS	(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+			--INSERT Schedule VALUES	(@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
 		SET @lesson_number = @lesson_number + 1;
 
 		DECLARE	@day	AS	TINYINT	= DATEPART(WEEKDAY, @date);
