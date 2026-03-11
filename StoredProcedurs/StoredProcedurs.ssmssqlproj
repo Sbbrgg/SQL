@@ -45,6 +45,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery1 - spSELECTSchedule for Group.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery2 - sp_InsertSchedule1221.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-JAU235M\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-JAU235M\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery2 - sp_InsertSchedule1221.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery2 - spINSERT Lesson HOMEWORK.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-JAU235M\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-JAU235M\SQLEXPRESS</AssociatedConnSrvName>
